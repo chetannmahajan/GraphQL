@@ -1,0 +1,6 @@
+input ProductInput{
+    name: String
+    category: String
+    price: Float
+    stock: Int
+}

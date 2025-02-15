@@ -1,0 +1,5 @@
+extend type Query{
+    getProducts:[Product]   #here in query we have function name preset in the controllers and it's return type as well in []
+    getProductsByCategory(category:String):[Product] #This function takes the input parameter category of type String and returns Product type.
+    #Also this [] square brackets means array, on above line the return type is Product array.
+}

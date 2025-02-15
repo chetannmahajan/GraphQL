@@ -1,0 +1,6 @@
+extend type Mutation{
+    updateStock(id:ID, stock:Int):[Product]
+    receiveNewShipment(id:ID, quantity:Int):[Product]
+    addProduct(product: ProductInput!): Product #Here the ! means the field is non-nullable.
+    deleteProductById(id:ID!):String
+}
