@@ -1,5 +1,6 @@
 package com.example.inventory_service.service;
 import com.example.inventory_service.entity.Product;
+import com.example.inventory_service.excepiton.ProductNotFoundException;
 import com.example.inventory_service.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class ProductService {
 
     //Sales team: update the stock price of a product
     public Product updateStock(int id, int stock){
-        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found with Id: " + id));
+        Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product not found with Id: " + id));
         product.setStock(stock);
         return productRepository.save(product);
     }
@@ -30,7 +31,7 @@ public class ProductService {
     //warehouse : receive new shipment
     //Sales team: update the stock price of a product
     public Product receiveNewShipment(int id, int quantity){
-        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found with Id: " + id));
+        Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product not found with Id: " + id));
         product.setStock(product.getStock()+quantity);
         return productRepository.save(product);
     }
@@ -48,7 +49,7 @@ public class ProductService {
 
     //Making a delete call
     public String deleteProduct(Integer id){
-        Product productToBeDeleted = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+        Product productToBeDeleted = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
         productRepository.delete(productToBeDeleted);
         return "Product with id: " +id+" deleted successfully";
     }
