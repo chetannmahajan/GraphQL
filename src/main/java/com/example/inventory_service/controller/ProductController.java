@@ -49,7 +49,7 @@ public class ProductController {
 
     //@MutationMapping is also used for @DeleteMapping as well
     @MutationMapping
-    protected String deleteProductById(@Argument Integer id){
+    public String deleteProductById(@Argument Integer id){
         return productService.deleteProduct(id);
     }
 }
